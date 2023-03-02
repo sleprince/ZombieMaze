@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5680c364f4fca646ac34b4c1b4d38b4, type: 3}
+  m_Name: PlayerInventory
+  m_EditorClassIdentifier: 
+  itemDatabase: {fileID: 11400000, guid: c6590cc01bb471f4bbfe362de0e2a7d7, type: 2}
+  inventory:
+  - itemId: 1
+    itemName: USB stick
+    itemDescription: Contains newly supplied content for the dinosaur's unleashed
+      exhibition which started 2 weeks ago.
+    itemSprite: {fileID: 21300000, guid: b714fb1d25934ad448dcba85417ee016, type: 3}
+    itemCursor: {fileID: 2800000, guid: f83df11b8ee54bb4ab4ff260d3076db1, type: 3}
+    allowMultiple: 0
+    amount: 0
+  - itemId: 3
+    itemName: Crisp Packet
+    itemDescription: Packet of monster Chomp crisps, there's a QR code on the back
+      to take part in the competition.
+    itemSprite: {fileID: 21300000, guid: a5ccef3f996dbac4eb725f2943ab4bfa, type: 3}
+    itemCursor: {fileID: 2800000, guid: b6edab6d0e27ee741b9116e9a6d971fa, type: 3}
+    allowMultiple: 0
+    amount: 0
