@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class EnemyAI : MonoBehaviour {
 
@@ -20,6 +21,13 @@ public class EnemyAI : MonoBehaviour {
     public Transform mummySpawn;
     public GameObject player;
 
+    CharacterController characterController;
+
+    public float gravity = 20.0f;
+    public float maxFallSpeed = 20.0f;
+    private Vector3 velocity;
+    private bool isGrounded = false;
+
     private void Awake() {
 
         state = State.Roaming;
@@ -37,9 +45,12 @@ public class EnemyAI : MonoBehaviour {
         //use a spawnPos
         startingPosition = spawnPos.position;
 
+        characterController = GetComponent<CharacterController>();
+
     }
 
     private void Update() {
+
         switch (state) {
         default:
         case State.Roaming:         
