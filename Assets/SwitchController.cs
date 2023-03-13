@@ -42,12 +42,11 @@ public class SwitchController : MonoBehaviour
 
     IEnumerator TrapdoorOpen()
     {
+
         trapdoor.GetComponent<MeshRenderer>().enabled = false;
-        trapdoor.GetComponent<MeshCollider>().enabled = false;
 
         yield return new WaitForSeconds(3f);
 
         trapdoor.GetComponent<MeshRenderer>().enabled = true;
-        trapdoor.GetComponent<MeshCollider>().enabled = true;
     }
 }

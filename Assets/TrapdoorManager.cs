@@ -27,18 +27,27 @@ public class TrapdoorManager : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
        Debug.Log(other.gameObject.name + " collided with " + this.gameObject.name);
 
-        if (other.tag == "Zombie" && this.GetComponent<MeshRenderer>().enabled == true)
-            // other.GetComponent<NavMeshAgent>().enabled= false;
-            // other.GetComponent<CharacterController>().Move(moveDirection * Time.deltaTime);
-            other.GetComponent<FPSController>().enabled = true;
+        if (other.tag == "Zombie"
+            && this.GetComponent<MeshRenderer>().enabled == false)
+        {
+            
+            //other.GetComponent<EnemyController>().enabled = true;
+
+            other.GetComponent<NavMeshAgent>().enabled = false;
+            other.enabled = false;
+
+
+        }
+
 
 
 
     }
+
 
 
 }

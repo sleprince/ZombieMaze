@@ -32,9 +32,6 @@ public class EnemyController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
 
-        // Lock cursor, looking down at start is just within Unity play mode
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()
@@ -43,22 +40,13 @@ public class EnemyController : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
         // Press Left Shift to run
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
-
-        //ternary operator- condition ? valueIfTrue : valueIfFalse
-        float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
+        
         float movementDirectionY = moveDirection.y;
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        moveDirection = (forward) + (right);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
-        {
-            moveDirection.y = jumpSpeed;
-        }
-        else
-        {
+
             moveDirection.y = movementDirectionY;
-        }
+        
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
         // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
@@ -69,19 +57,7 @@ public class EnemyController : MonoBehaviour
         }
 
         // Move the controller
-        //characterController.Move(moveDirection * Time.deltaTime);
+        characterController.Move(moveDirection * Time.deltaTime);
 
-        // Player and Camera rotation
-        if (canMove)
-        {
-            float rotX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
-            rotY += Input.GetAxis("Mouse Y") * sensitivity;
-            rotY = Mathf.Clamp(rotY, -90f, 90f);
-
-            transform.localEulerAngles = new Vector3(0, rotX, 0);
-            playerCamera.transform.localEulerAngles = new Vector3(-rotY, rotX, 0);
-
-            playerAnim.UpdateAnimation(characterController.velocity.sqrMagnitude * 5);
-        }
     }
 }
