@@ -6,15 +6,17 @@ using UnityEngine.EventSystems;
 
 public class TrapdoorManager : MonoBehaviour
 {
-    Vector3 moveDirection = Vector3.zero;
-    public float gravity = 20.0f;
+    //Vector3 moveDirection = Vector3.zero;
+    //public float gravity = 20.0f;
+
+    private MeshCollider trapdoorCollider;
 
 
     // Start is called before the first frame update
     void Start()
     {
 
-        
+        trapdoorCollider = GetComponent<MeshCollider>();
 
 
     }
@@ -23,7 +25,7 @@ public class TrapdoorManager : MonoBehaviour
     void Update()
     {
 
-        moveDirection.y -= gravity * Time.deltaTime;
+        //moveDirection.y -= gravity * Time.deltaTime;
 
     }
 
@@ -32,10 +34,10 @@ public class TrapdoorManager : MonoBehaviour
        Debug.Log(other.gameObject.name + " collided with " + this.gameObject.name);
 
         if (other.tag == "Zombie"
-            && this.GetComponent<MeshRenderer>().enabled == false)
+            && trapdoorCollider.enabled == false)
         {
             
-            //other.GetComponent<EnemyController>().enabled = true;
+            //other.GetComponent<EnemyController>().enabled = true; //this worked but was inefficient
 
             other.GetComponent<NavMeshAgent>().enabled = false;
             other.enabled = false;
