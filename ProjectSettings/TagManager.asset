@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Zombie
   - Ground
+  - BigZombie
   layers:
   - Default
   - TransparentFX

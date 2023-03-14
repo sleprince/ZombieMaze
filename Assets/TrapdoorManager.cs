@@ -45,6 +45,12 @@ public class TrapdoorManager : MonoBehaviour
 
         }
 
+        if (other.tag == "BigZombie")
+        {
+            other.GetComponent<NavMeshAgent>().enabled = false;
+            other.transform.Translate(0, -1, 0); //move him into stuck in the ground
+        }
+
 
 
 
