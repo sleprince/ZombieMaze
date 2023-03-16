@@ -6,10 +6,9 @@ using UnityEngine.EventSystems;
 
 public class TrapdoorManager : MonoBehaviour
 {
-    //Vector3 moveDirection = Vector3.zero;
-    //public float gravity = 20.0f;
 
     private MeshCollider trapdoorCollider;
+    [SerializeField] private Transform destination;
 
 
     // Start is called before the first frame update
@@ -25,7 +24,6 @@ public class TrapdoorManager : MonoBehaviour
     void Update()
     {
 
-        //moveDirection.y -= gravity * Time.deltaTime;
 
     }
 
@@ -47,17 +45,17 @@ public class TrapdoorManager : MonoBehaviour
 
         if (other.tag == "BigZombie")
         {
-            other.GetComponent<NavMeshAgent>().enabled = false;
+            //other.GetComponent<NavMeshAgent>().enabled = false; //no longer needed
             other.GetComponent<EnemyAI>().enabled = false;
-            //other.transform.Translate(0, -1, 0); //move him into stuck in the ground
+            other.GetComponent<NavMeshAgent>().destination = destination.position;
+            other.GetComponent<NavMeshAgent>().baseOffset = -1.44f; //move him into stuck in the ground
+
+
+
+
+
 
         }
-
-
-
-
     }
-
-
 
 }

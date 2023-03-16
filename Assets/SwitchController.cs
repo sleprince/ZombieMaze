@@ -56,7 +56,10 @@ public class SwitchController : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        trapdoorMesh.enabled = true;
-        trapdoorCollider.enabled = true;
+        if (other.tag != "BigZombie" && gameObject.name != "CubeSwitch2")
+        {
+            trapdoorMesh.enabled = true;
+            trapdoorCollider.enabled = true;
+        }
     }
 }

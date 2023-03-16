@@ -1754,7 +1754,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.68
+  m_Radius: 1.35
   m_Height: 2.27
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: 0}
@@ -2081,6 +2081,36 @@ Transform:
   - {fileID: 2075382730}
   m_Father: {fileID: 1983534090}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &560935176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 560935177}
+  m_Layer: 0
+  m_Name: StuckZombiePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &560935177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560935176}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 71, y: -2.31, z: -59.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &579779771
 Mesh:
@@ -2887,9 +2917,9 @@ Transform:
   m_LocalPosition: {x: -59.3, y: -0.30427858, z: 8.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 856601670741933162}
-  - {fileID: 421005183}
   - {fileID: 1625404189}
+  - {fileID: 421005183}
+  - {fileID: 856601670741933162}
   - {fileID: 215676592}
   - {fileID: 280494753}
   - {fileID: 1790316584}
@@ -3578,6 +3608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcffd3c3f53cd9c4d813d00407b8e25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destination: {fileID: 0}
 --- !u!65 &906909278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19005,7 +19036,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.07, y: 1, z: 1.33}
+  m_Size: {x: 1.33, y: 1, z: 2.65}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1421005417
 MeshRenderer:
@@ -19732,7 +19763,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.124999985, y: 0.03, z: 0.12500013}
+  m_Size: {x: 0.05, y: 0.03, z: 0.05}
   m_Center: {x: 0.18750003, y: 4.5796696e-17, z: -2.0625005}
 --- !u!114 &1547350594
 MonoBehaviour:
@@ -19746,6 +19777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcffd3c3f53cd9c4d813d00407b8e25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destination: {fileID: 560935177}
 --- !u!1 &1551398554
 GameObject:
   m_ObjectHideFlags: 0
@@ -20366,8 +20398,9 @@ GameObject:
   - component: {fileID: 1625404185}
   - component: {fileID: 1625404190}
   - component: {fileID: 1625404191}
+  - component: {fileID: 1625404192}
   m_Layer: 0
-  m_Name: TT_demo_zombie3
+  m_Name: TT_demo_zombie
   m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20388,7 +20421,7 @@ MonoBehaviour:
   speed: 1
   game: {fileID: 920193919}
   spawnPos: {fileID: 1847511387}
-  mummySpawn: {fileID: 1790316584}
+  mummySpawn: {fileID: 215676592}
   player: {fileID: 1828984377816837243}
   gravity: 20
   maxFallSpeed: 20
@@ -20458,13 +20491,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625404184}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 132.4, y: 0, z: 25.199999}
+  m_LocalPosition: {x: 0, y: 1.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1131084739}
   - {fileID: 1176472235}
   m_Father: {fileID: 800810870}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &1625404190
 CharacterController:
@@ -20506,6 +20539,20 @@ MonoBehaviour:
   sensitivity: 5
   canMove: 1
   playerAnim: {fileID: 0}
+--- !u!136 &1625404192
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625404184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.59
+  m_Height: 2.99
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.31, z: 0}
 --- !u!1 &1635906127
 GameObject:
   m_ObjectHideFlags: 0
@@ -21633,9 +21680,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1421005419}
-  - {fileID: 1896458583}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1784232543
 GameObject:
@@ -22418,11 +22464,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896458582}
   m_LocalRotation: {x: 0.0028641128, y: 0.8769366, z: -0.48056847, w: 0.005285487}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4999999, y: 2, z: 0.5}
+  m_LocalPosition: {x: 15.942013, y: 9.3670025, z: -34.474052}
+  m_LocalScale: {x: 1.5, y: 2, z: 0.5000001}
   m_Children: []
-  m_Father: {fileID: 1774621152}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1896458584
 MonoBehaviour:
@@ -22437,7 +22483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1828984377816837243}
-  teleportExit: {fileID: 0}
+  teleportExit: {fileID: 1421005419}
 --- !u!65 &1896458585
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23881,7 +23927,7 @@ GameObject:
   - component: {fileID: 856601670741893135}
   - component: {fileID: 856601670741893133}
   m_Layer: 0
-  m_Name: TT_demo_zombie
+  m_Name: TT_demo_zombie3
   m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24514,13 +24560,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856601670741893130}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.07, z: 0}
+  m_LocalPosition: {x: 132.4, y: 0, z: 25.199999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 856601670741933518}
   - {fileID: 856601670741932904}
   m_Father: {fileID: 800810870}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &856601670741933164
 NavMeshAgent:
@@ -24559,7 +24605,7 @@ MonoBehaviour:
   speed: 1
   game: {fileID: 920193919}
   spawnPos: {fileID: 1847511387}
-  mummySpawn: {fileID: 215676592}
+  mummySpawn: {fileID: 1790316584}
   player: {fileID: 1828984377816837243}
   gravity: 20
   maxFallSpeed: 20
@@ -31296,9 +31342,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.99
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.01, z: 0}
 --- !u!114 &8228828232789428670
 MonoBehaviour:
   m_ObjectHideFlags: 0

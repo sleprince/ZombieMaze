@@ -25,6 +25,9 @@ public class TeleportationHandler : MonoBehaviour
 
 
         other.GetComponent<CharacterController>().Move(teleportExit.position); //do the teleportation
+
+        //other.gameObject.transform.Translate(teleportExit.position); //takes you to the middle of nowhere
+
     }
 
 
