@@ -38,6 +38,7 @@ public class TrapdoorManager : MonoBehaviour
             //other.GetComponent<EnemyController>().enabled = true; //this worked but was inefficient
 
             other.GetComponent<NavMeshAgent>().enabled = false;
+            other.GetComponent<Rigidbody>().isKinematic= false;
             other.enabled = false;
 
 
