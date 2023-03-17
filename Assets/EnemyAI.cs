@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
 
 public class EnemyAI : MonoBehaviour {
 
@@ -9,78 +8,55 @@ public class EnemyAI : MonoBehaviour {
         ChaseTarget
     }
 
-    private Vector3 startingPosition;
     private State state;
-
     private NavMeshAgent agent;
     public float speed = 1.0f;
     private Vector3 destination;
+    [SerializeField] private GameManager game;
+    [SerializeField] private GameObject player;
 
-    public GameManager game;
-    public Transform spawnPos;
-    public Transform mummySpawn;
-    public GameObject player;
-
-    CharacterController characterController;
-
-    public float gravity = 20.0f;
-    public float maxFallSpeed = 20.0f;
-    private Vector3 velocity;
-    private bool isGrounded = false;
 
     private void Awake() {
 
-        state = State.Roaming;
-
+        state = State.Roaming; //default state is roaming
         agent = GetComponent<NavMeshAgent>();
-        transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-
-        destination = GetRandomPositionOnNavMesh();
-        agent.SetDestination(destination);
-
-    }
-
-    private void Start() {
-
-        //use a spawnPos
-        startingPosition = spawnPos.position;
-
-        characterController = GetComponent<CharacterController>();
+        transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0); //point in a random direction at the start
+        destination = GetRandomPositionOnNavMesh(); //function to get a random destination within the NavMesh bounds
+        agent.SetDestination(destination); //set the NavMesh agent's destination to this
 
     }
 
     private void Update() {
 
+        //switch statement that uses the state variable, default is roaming
         switch (state) {
         default:
         case State.Roaming:         
 
-                if (agent.remainingDistance < 0.5f)
+                if (agent.remainingDistance < 0.5f) //when destination reached, generate a new random destination
                 {
                     destination = GetRandomPositionOnNavMesh();
                     agent.SetDestination(destination);
                 }
 
-                FindTarget();
+                FindTarget(); //when roaming, constantly calling the FindTarget method
                 break;
         case State.ChaseTarget:
-            agent.destination = player.transform.position;
+            agent.destination = player.transform.position; //destinated becomes player position
 
 
                 float catchRange = 2f;
             if (Vector3.Distance(transform.position, player.transform.position) < catchRange) {
-                    // Target within catch range
+                    //if player is within catch range they lose the game and the scene reloads
 
                     //Debug.Log("You got caught.");
                     game.Lose();
-                    player.transform.position = startingPosition;
-                    agent.transform.position = mummySpawn.position;
 
             }
 
             float stopChaseDistance = 7f;
             if (Vector3.Distance(transform.position, player.transform.position) > stopChaseDistance) {
-                // Too far, stop chasing
+                // too far, stop chasing
                 state = State.Roaming;
             }
             break;
@@ -90,10 +66,21 @@ public class EnemyAI : MonoBehaviour {
 
     private Vector3 GetRandomPositionOnNavMesh()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * 20.0f;
-        randomDirection += transform.position;
+        //generates a random position within a sphere of radius 20 units around the origin
+        Vector3 randomPoint = Random.insideUnitSphere * 20.0f;
+
+        //adds the position vector of the object that this script is attached to, so that the random position is centered around
+        //the object's position rather than being cenetered around the scene position (usually 0,0,0)
+        randomPoint += transform.position;
+
+        // Declare a NavMeshHit variable to hold information about the closest point on the NavMesh to the random position
         NavMeshHit navMeshHit;
-        NavMesh.SamplePosition(randomDirection, out navMeshHit, 20.0f, NavMesh.AllAreas);
+
+        // Use NavMesh.SamplePosition to find the closest point on the NavMesh to the random position, within a radius of 20
+        // units and in all NavMesh areas, output the information about this point to navMeshHit
+        NavMesh.SamplePosition(randomPoint, out navMeshHit, 20.0f, NavMesh.AllAreas);
+
+        // Return the position of the closest point on the NavMesh to the random position
         return navMeshHit.position;
     }
 
@@ -102,7 +89,7 @@ public class EnemyAI : MonoBehaviour {
 
 
         if (Vector3.Distance(transform.position, player.transform.position) < targetRange) {
-            // Player within target range
+            // if player is within target range, change to the chasing state
             state = State.ChaseTarget;
         }
     }

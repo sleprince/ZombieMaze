@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class TrapdoorManager : MonoBehaviour
 {
 
-    private MeshCollider trapdoorCollider;
+    private MeshRenderer trapdoorRenderer;
     [SerializeField] private Transform destination;
 
 
@@ -15,8 +15,7 @@ public class TrapdoorManager : MonoBehaviour
     void Start()
     {
 
-        trapdoorCollider = GetComponent<MeshCollider>();
-
+        trapdoorRenderer = GetComponent<MeshRenderer>();
 
     }
 
@@ -32,7 +31,7 @@ public class TrapdoorManager : MonoBehaviour
        Debug.Log(other.gameObject.name + " collided with " + this.gameObject.name);
 
         if (other.tag == "Zombie"
-            && trapdoorCollider.enabled == false)
+            && trapdoorRenderer.enabled == false)
         {
             
             //other.GetComponent<EnemyController>().enabled = true; //this worked but was inefficient
@@ -44,7 +43,7 @@ public class TrapdoorManager : MonoBehaviour
 
         }
 
-        if (other.tag == "BigZombie")
+        if (other.tag == "BigZombie" && trapdoorRenderer.enabled == false)
         {
             //other.GetComponent<NavMeshAgent>().enabled = false; //no longer needed
             other.GetComponent<EnemyAI>().enabled = false;
